@@ -2,6 +2,7 @@ import { FlatList, Text, TouchableOpacity, View, Image} from 'react-native'
 import React from 'react'
 import tw from 'twrnc';
 import { Icon } from '@rneui/themed';
+import { useNavigation } from '@react-navigation/native';
 
 //Options on the Screen
 const data = [
@@ -20,6 +21,9 @@ const data = [
 ];
 
 const NavOptions = () => {
+
+    const navigation = useNavigation();
+
     return (
         <FlatList 
             data={data}
