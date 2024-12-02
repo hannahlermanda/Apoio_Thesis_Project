@@ -21,7 +21,29 @@ const HomeScreen = () => {
             accessibilityLabel="Apoio logo"
         />
 
-        
+        <GooglePlacesAutocomplete 
+            placeholder='Where From?'
+            styles={{
+                container: {
+                    flex: 0, //Have the component pop up
+                },
+                textInput:{
+                    fontSize: 18,
+                },
+            }}
+
+            enablePoweredByContainer={false} //get rid of "Powered by Google"
+
+            minLength={2} //Query must have a minimum length of two characters
+
+            query={{
+                key: GOOGLE_MAPS_APIKEY, //Import + Access Google Maps API Key
+                language: 'en' //English
+            }}
+
+            nearbyPlacesAPI='GooglePlacesSearch'
+            debounce={400} //Only after you finish typing for 400 ms, will the Google Places Search activate
+        />
 
 
         <NavOptions/>
