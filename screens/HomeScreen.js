@@ -32,6 +32,15 @@ const HomeScreen = () => {
                 },
             }}
 
+            onPress={(data, details = null) => {
+                console.log(data);
+                console.log(details)
+            }}
+
+            fetchDetails={true}
+
+            returnKeyType={"search"} //When you click the 'Return' key, you search
+
             enablePoweredByContainer={false} //get rid of "Powered by Google"
 
             minLength={2} //Query must have a minimum length of two characters
