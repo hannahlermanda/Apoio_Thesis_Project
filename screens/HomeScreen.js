@@ -34,6 +34,7 @@ const HomeScreen = () => {
                 },
                 textInput:{
                     fontSize: 18,
+                    backgroundColor: "#DDDDDF",
                 },
             }}
 
