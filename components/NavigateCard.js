@@ -3,8 +3,15 @@ import React from 'react';
 import tw from 'twrnc';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { GOOGLE_MAPS_APIKEY } from "@env";
+import { useDispatch } from 'react-redux';
+import { setDestination } from '../slices/navSlice';
+import { useNavigation } from '@react-navigation/native';
 
 const NavigateCard = () => {
+
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+
   return (
     //White background, Text is centered, Padding (vertically) - 5, Extra large text
     <SafeAreaView style={tw`bg-white flex-1`}>
@@ -17,6 +24,16 @@ const NavigateCard = () => {
             placeholder="Where to?"
             styles={toInputBoxStyles}
             fetchDetails={true}
+            minLength={2}
+            onPress={(data, details = null) => {
+              dispatch(setDestination({
+                location: details.geometry.location, //Helps set the travel destination when you press the option on Google Places AutoComplete
+                description: data.description
+                })
+              );
+              navigation.navigate('RideOptionsCard')
+            }}
+            returnKeyType={"search"}
             enablePoweredByContainer={false}
             query={{
               key:GOOGLE_MAPS_APIKEY,
