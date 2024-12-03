@@ -20,6 +20,16 @@ const Map = () => {
             longitudeDelta: 0.005,
         }}
     >
+
+        {origin?.location && (
+            <Marker //Creates a Marker (like a pin) on the Map
+                coordinate={{
+                    latitude: origin.location.lat,
+                    longitude: origin.location.lng, 
+                }}
+            />
+        )} 
+
     </MapView>
   )
 }
