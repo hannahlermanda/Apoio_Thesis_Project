@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView} from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity } from 'react-native';
 import React from 'react';
 import tw from 'twrnc';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
@@ -7,6 +7,8 @@ import { useDispatch } from 'react-redux';
 import { setDestination } from '../slices/navSlice';
 import { useNavigation } from '@react-navigation/native';
 import NavFavorites from './NavFavorites';
+import { Icon } from '@rneui/themed';
+import RideOptionsCard from './RideOptionsCard';
 
 const NavigateCard = () => {
 
@@ -46,6 +48,24 @@ const NavigateCard = () => {
         </View>
 
         <NavFavorites />
+
+        <View
+          style={tw`flex-row bg-white justify-evenly py-2 mt-auto border-t border-gray-100`}  
+        >
+          <TouchableOpacity 
+              style={tw`flex flex-row bg-black w-24 px-4 py-2 rounded-full justify-between items-center`}
+              onPress={() => navigation.navigate("RideOptionsCard")}
+          >
+              <Icon name="car" type="font-awesome" color="white" size={16}/>
+                <Text style={tw`text-white text-center`}>Rides</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={tw`flex flex-row bg-black w-27 px-4 py-2 rounded-full justify-between items-center`}>
+              <Icon name="heart-circle-outline" type="ionicon" color="white" size={16}/>
+                <Text style={tw`text-white text-center`}>Trusted Contacts</Text>
+          </TouchableOpacity>
+        </View>
+
       </View>
     </SafeAreaView>
   )
