@@ -31,7 +31,7 @@ const NavigateCard = () => {
                 description: data.description
                 })
               );
-              navigation.navigate('RideOptionsCard')
+              navigation.navigate('RideOptionsCard');
             }}
             returnKeyType={"search"}
             enablePoweredByContainer={false}
