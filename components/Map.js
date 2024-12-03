@@ -27,6 +27,11 @@ const Map = () => {
                     latitude: origin.location.lat,
                     longitude: origin.location.lng, 
                 }}
+
+                title="Starting Point"
+                description={origin.description}
+                identifier="origin"
+                //Can also put live location if you follow the documentation (may try later)
             />
         )} 
 
