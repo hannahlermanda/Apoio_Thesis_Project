@@ -13,11 +13,11 @@ const MapScreen = () => {
   return (
     <View>
 
-        <View style={tw `h-[43%]`}>
+        <View style={tw `h-[37%]`}>
             <Map />
         </View>  
 
-        <View style={tw `h-[57%]`}>
+        <View style={tw `h-[63%]`}>
             <Stack.Navigator>
                 <Stack.Screen
                     name="NavigateCard"
