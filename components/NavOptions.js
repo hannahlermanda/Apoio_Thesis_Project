@@ -35,14 +35,14 @@ const NavOptions = () => {
             renderItem={({ item }) => (
                 <TouchableOpacity
                     onPress={() => navigation.navigate(item.screen)}
-                    style={tw`p-2 pl-5 pb-6 pt-1 bg-blue-100 m-2 w-32`}    //Padding:2, Padding Left: 5, Padding Bottom: 6, Padding Top: 1, Background Color: Light Blue, Margin:2, Width: 32
+                    style={tw`p-2 pl-5 pb-3 pt-1 bg-blue-100 m-2 w-32`}    //Padding:2, Padding Left: 5, Padding Bottom: 3, Padding Top: 1, Background Color: Light Blue, Margin:2, Width: 32
                     disabled={!origin}
                 >
                     <View style={tw`${!origin && "opacity-20"}`}>
                         <Image 
                             style={
                                 {width: 100,
-                                 height: 100,
+                                 height: 75,
                                  resizeMode: "contain"
                                 }
                             }
