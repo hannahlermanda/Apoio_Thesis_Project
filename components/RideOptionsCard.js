@@ -1,11 +1,76 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, FlatList, Image } from 'react-native';
+import React from 'react';
+import tw from 'twrnc';
+import { Icon } from '@rneui/themed';
+import { useNavigation } from '@react-navigation/native';
+import NavigateCard from './NavigateCard';
+
+const data = [
+  {
+      id:"WAV-123",
+      title:"Standard Wheelchair-Accessible Vehicle (WAV)",
+      multiplier: 1,
+      image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-ybGkh6hPXdsRdDjNcpKzTJkOLJXOzXEmWA&s"
+  },
+  {
+      id:"WAV-L-456",
+      title:"Large Wheelchair-Accessible Vehicle (WAV)",
+      multiplier: 1,
+      image:"https://icons.iconarchive.com/icons/fa-team/fontawesome/256/FontAwesome-Wheelchair-Move-icon.png"
+  },
+  {
+    id:"WAV-Lux-789",
+    title:"Luxury Wheelchair-Accessible Vehicle (WAV)",
+    multiplier: 1.2,
+    image:"https://icons.veryicon.com/png/o/application/font-awesome/diamond-29.png"
+  },
+];
 
 const RideOptionsCard = () => {
+
+  const navigation = useNavigation();
+
   return (
-    <View>
-      <Text>RideOptionsCard</Text>
-    </View>
+    <SafeAreaView style={tw`bg-white flex-grow`}>
+      <View>
+        <TouchableOpacity 
+          onPress={() => navigation.navigate("NavigateCard")}
+          style={tw`absolute top-3 left-5 p-3 z-50 rounded-full`}
+        >
+          <Icon name="chevron-left" type="fontawesome"/>
+        </TouchableOpacity>
+        <Text style={tw`text-center py-5 text-xl`}>Select a Ride</Text>
+      </View>
+
+      <FlatList data={data}
+        keyExtractor={ (item) => item.id}
+        renderItem={({item: {id, title, multiplier, image}, item}) => (
+          <TouchableOpacity style={tw`flex-row justify-between items-center px-8 mt-4 `}>
+            <Image
+              style={{
+                width: 40,
+                height: 70,
+                resizeMode: "contain",
+              }}
+              source={{ uri: image }}
+            />
+            <View style={tw`ml-4`}> 
+              <Text style={tw`text-[18px] font-semibold`}>
+                {title} 
+              </Text>
+              <Text>
+                Travel time...
+              </Text>
+              <Text style={tw`text-xl`}>
+                $99
+              </Text>
+            </View>
+          </TouchableOpacity>
+        )}
+      
+      
+      />
+    </SafeAreaView>
   )
 }
 

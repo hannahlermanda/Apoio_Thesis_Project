@@ -28,8 +28,7 @@ const MapScreen = () => {
                 />
                 <Stack.Screen
                     name="RideOptionsCard"
-                    component={RideOptionsCard
-                    }
+                    component={RideOptionsCard}
                     options={{
                         headerShown: false,
                     }}
