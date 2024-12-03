@@ -37,7 +37,7 @@ const RideOptionsCard = () => {
   return (
     <SafeAreaView style={tw`bg-white flex-grow`}>
       <View>
-        <TouchableOpacity 
+        <TouchableOpacity //Go back to the previous screen
           onPress={() => navigation.navigate("NavigateCard")}
           style={tw`absolute top-3 left-5 p-3 z-50 rounded-full`}
         >
