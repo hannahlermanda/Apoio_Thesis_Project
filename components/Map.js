@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import tw from 'twrnc';
 import { useSelector } from 'react-redux';
@@ -11,9 +11,31 @@ const Map = () => {
     
     const origin = useSelector(selectOrigin);
     const destination = useSelector(selectDestination);
+    const mapRef = useRef(null);
+
+    useEffect(() => {
+        if (!origin || !destination) return; //If there is no origin or no destination set, get out
+
+            // Calculate the midpoint between origin and destination
+            const latitude = (origin.location.lat + destination.location.lat) / 2;
+            const longitude = (origin.location.lng + destination.location.lng) / 2;
+
+            // Calculate the delta to fit both markers
+            const latitudeDelta = Math.abs(origin.location.lat - destination.location.lat) * 1.5;  // Adjust 1.5 factor if needed
+            const longitudeDelta = Math.abs(origin.location.lng - destination.location.lng) * 1.5; // Adjust 1.5 factor if needed
+
+            // Animate the map to the new region
+            mapRef.current.animateToRegion({
+                latitude,
+                longitude,
+                latitudeDelta,
+                longitudeDelta,
+            }, 1000);  // Smooth transition to the new region
+    }, [origin,destination]); //Will occur any time the origin or destination is changed
   
     return (
     <MapView
+        ref={mapRef}
         style={tw`flex-1`}
         mapType="mutedStandard" //Strips down map to more basic components (Reduces clutter)
         initialRegion={{
@@ -47,6 +69,21 @@ const Map = () => {
                 //Can also put live location if you follow the documentation (may try later)
             />
         )} 
+
+        {destination?.location && (
+                    <Marker //Creates a Marker (like a pin) on the Map
+                        coordinate={{
+                            latitude: destination.location.lat,
+                            longitude: destination.location.lng, 
+                        }}
+
+                        title="Destination"
+                        description={destination.description}
+                        identifier="destination"
+                        //Can also put live location if you follow the documentation (may try later)
+                    />
+                )
+        } 
 
     </MapView>
   )
