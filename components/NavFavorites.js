@@ -46,6 +46,8 @@ const NavFavorites = () => {
     );
 };
 
+//Can use OnPress to make the favorites the destination
+
 export default NavFavorites
 
 const styles = StyleSheet.create({})
