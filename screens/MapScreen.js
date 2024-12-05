@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Alert } from 'react-native';
 import React from 'react';
 import tw from 'twrnc';
 import Map from '../components/Map';
@@ -14,6 +14,20 @@ const MapScreen = () => {
     const Stack = createNativeStackNavigator();
     const navigation = useNavigation();
 
+    // Handle error and navigate to previous screen
+    const handleRouteError = (errorMessage) => {
+        Alert.alert("Route Error", errorMessage, [
+            { 
+                text: "OK", 
+                onPress: () => {
+                    console.log("User acknowledged error.");
+                    navigation.navigate("HomeScreen"); // Go back to the Home Screen when OK is pressed
+                } 
+            }
+        ]);
+    };
+
+
   return (
     <View>
         
@@ -24,7 +38,7 @@ const MapScreen = () => {
         </TouchableOpacity>
 
         <View style={tw `h-[37%]`}>
-            <Map />
+            <Map onRouteError={handleRouteError} />
         </View>  
 
         <View style={tw `h-[63%]`}>
