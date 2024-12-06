@@ -60,7 +60,9 @@ const NavigateCard = () => {
                 <Text style={tw`text-white text-center`}>Rides</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={tw`flex flex-row bg-black w-27 px-4 py-2 rounded-full justify-between items-center`}>
+          <TouchableOpacity 
+              style={tw`flex flex-row bg-black w-27 px-4 py-2 rounded-full justify-between items-center`}
+              onPress={() => navigation.navigate("TrustedContacts")}>
               <Icon name="heart-circle-outline" type="ionicon" color="white" size={16}/>
                 <Text style={tw`text-white text-center`}>Trusted Contacts</Text>
           </TouchableOpacity>

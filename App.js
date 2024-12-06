@@ -8,6 +8,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import 'react-native-get-random-values';
+import TrustedContacts from './screens/TrustedContacts';
 
 
 export default function App() {
@@ -34,6 +35,13 @@ export default function App() {
                 <Stack.Screen 
                   name="MapScreen" 
                   component={MapScreen} 
+                  options= {{
+                    headerShown: false,
+                  }}
+                />
+                <Stack.Screen 
+                  name="TrustedContacts" 
+                  component={TrustedContacts} 
                   options= {{
                     headerShown: false,
                   }}
