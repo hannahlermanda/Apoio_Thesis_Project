@@ -9,6 +9,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import 'react-native-get-random-values';
 import TrustedContacts from './screens/TrustedContacts';
+import ConfirmationScreen from './screens/ConfirmationScreen';
 
 
 export default function App() {
@@ -42,6 +43,13 @@ export default function App() {
                 <Stack.Screen 
                   name="TrustedContacts" 
                   component={TrustedContacts} 
+                  options= {{
+                    headerShown: false,
+                  }}
+                />
+                <Stack.Screen 
+                  name="ConfirmationScreen" 
+                  component={ConfirmationScreen} 
                   options= {{
                     headerShown: false,
                   }}

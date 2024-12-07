@@ -86,6 +86,9 @@ const RideOptionsCard = () => {
         <TouchableOpacity 
           disabled={!selected}
           style={tw`bg-black py-3 m-3 ${!selected && "bg-gray-300"}`}
+          onPress={() => {
+            navigation.navigate("ConfirmationScreen", { rideId: selected.id });
+          }}
         >
           <Text style={tw`text-center text-white text-[18px]`}>
             Choose {selected?.title}
