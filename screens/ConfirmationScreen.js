@@ -1,7 +1,8 @@
-import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity } from 'react-native';
+import React from 'react';
 import tw from 'twrnc';
 import { useRoute, useNavigation } from '@react-navigation/native';
+import Ionicons from 'react-native-vector-icons/Ionicons'; // Import Ionicons for icons
 
 const rideDetails = {
   "WAV-123": {
@@ -34,18 +35,21 @@ const ConfirmationScreen = () => {
   return (
     <SafeAreaView style={tw`bg-white flex-1`}>
       <View style={tw`p-5`}>
-        <Text style={tw`text-center text-xl font-bold`}>Ride Confirmation</Text>
+        <Text style={tw`text-center text-xl font-bold`}>Ride Confirmed!</Text>
+        <Ionicons name="checkmark-circle" size={60} color="green" style={tw`self-center mt-4`} />
         <View style={tw`mt-5`}>
           <Text style={tw`text-lg font-semibold`}>Ride Details:</Text>
-          <Text style={tw`text-lg`}>Driver: {rideInfo.driverName}</Text>
-          <Text style={tw`text-lg`}>Care Assistant: {rideInfo.assistantName}</Text>
-          <Text style={tw`text-lg`}>Car Model: {rideInfo.carModel}</Text>
-          <Text style={tw`text-lg`}>License Plate: {rideInfo.licensePlate}</Text>
+          <Text style={tw`text-lg`} accessible={true} accessibilityLabel="Driver Name">Driver: {rideInfo.driverName}</Text>
+          <Text style={tw`text-lg`} accessible={true} accessibilityLabel="Care Assistant Name">Care Assistant: {rideInfo.assistantName}</Text>
+          <Text style={tw`text-lg`} accessible={true} accessibilityLabel="Car Model">Car Model: {rideInfo.carModel}</Text>
+          <Text style={tw`text-lg`} accessible={true} accessibilityLabel="License Plate">License Plate: {rideInfo.licensePlate}</Text>
         </View>
       </View>
       <TouchableOpacity
         style={tw`bg-black py-3 mx-3 mt-auto`}
         onPress={() => navigation.navigate("HomeScreen")}
+        accessible={true}
+        accessibilityLabel="Go back to home screen"
       >
         <Text style={tw`text-center text-white text-lg`}>Done</Text>
       </TouchableOpacity>
