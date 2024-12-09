@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList, TouchableOpacity, SafeAreaView, Button } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, SafeAreaView } from 'react-native';
 import React, { useState } from 'react';
 import tw from 'twrnc';
 
@@ -30,36 +30,32 @@ const initialContacts = [
 ];
 
 const TrustedContacts = () => {
-  const [contacts, setContacts] = useState(initialContacts); // State for managing contacts
+  const [contacts, setContacts] = useState(initialContacts);
 
-  // Handler to add a new contact (for demo purposes, we just add a static one)
   const handleAddContact = () => {
     const newContact = {
-      id: (contacts.length + 1).toString(), // New ID based on current number of contacts
+      id: (contacts.length + 1).toString(),
       name: 'New Amigo',
       phone: '314-159-2653',
       relationship: 'Friend',
       email: null,
       nickname: null,
     };
-    setContacts([...contacts, newContact]); // Update contacts array with new contact
+    setContacts([...contacts, newContact]);
   };
 
-  // Handler to delete a contact
   const handleDeleteContact = (contactId) => {
-    setContacts(contacts.filter(contact => contact.id !== contactId)); // Remove contact by ID
+    setContacts(contacts.filter(contact => contact.id !== contactId));
   };
 
-  // Handler to edit a contact (for demo, just logs the contact)
   const handleEditContact = (contact) => {
-    console.log(`Edit contact: ${contact.name}`); // Placeholder action for editing
+    console.log(`Edit contact: ${contact.name}`);
   };
 
   const renderItem = ({ item }) => (
     <View style={styles.contactCard}>
       <Text style={styles.contactName}>{item.name}</Text>
       
-      {/* Contact details with better formatting */}
       <View style={styles.contactDetailsContainer}>
         <Text style={styles.contactDetailsLabel}>Phone:</Text>
         <Text style={styles.contactDetails}>{item.phone}</Text>
@@ -84,10 +80,25 @@ const TrustedContacts = () => {
         </View>
       )}
 
-      {/* Edit and Delete buttons */}
       <View style={styles.buttonContainer}>
-        <Button title="Edit" onPress={() => handleEditContact(item)} />
-        <Button title="Delete" onPress={() => handleDeleteContact(item.id)} />
+        <TouchableOpacity
+          style={styles.editButton}
+          onPress={() => handleEditContact(item)}
+          accessible={true}
+          accessibilityRole="button"
+          accessibilityLabel={`Edit contact ${item.name}`}
+        >
+          <Text style={styles.buttonText}>Edit</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.deleteButton}
+          onPress={() => handleDeleteContact(item.id)}
+          accessible={true}
+          accessibilityRole="button"
+          accessibilityLabel={`Delete contact ${item.name}`}
+        >
+          <Text style={styles.buttonText}>Delete</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -104,7 +115,6 @@ const TrustedContacts = () => {
           Trusted Contacts
         </Text>
         
-        {/* Add Contact Button styled for better visibility */}
         <TouchableOpacity
           style={styles.addButton}
           accessible={true}
@@ -139,7 +149,7 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   header: {
-    fontSize: 24, // Minimum 18 is already satisfied for header
+    fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: 16,
@@ -157,31 +167,27 @@ const styles = StyleSheet.create({
     borderColor: '#CCCCCC',
   },
   contactName: {
-    fontSize: 20, // Minimum 18 is already satisfied for contact name
+    fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 10,
     color: '#222222',
   },
   contactDetailsContainer: {
-    flexDirection: 'row', 
-    marginBottom: 8, // Space between details
+    flexDirection: 'row',
+    marginBottom: 8,
     alignItems: 'flex-start',
   },
   contactDetailsLabel: {
     fontSize: 18,
     fontWeight: 'bold',
     color: '#333333',
-    marginRight: 8, // Space between label and detail
-    flexShrink: 0, // Prevent shrinking of labels
+    marginRight: 8,
   },
   contactDetails: {
-    fontSize: 18, // Adjusted to ensure minimum font size of 18
+    fontSize: 18,
     color: '#444444',
-    flexShrink: 0, // Prevent shrinking of text below the minimum size
-    width: '85%', // Limit width of text to avoid awkward line breaks
-    overflow: 'hidden', // Prevent overflow
-    flexWrap: 'wrap', // Allow text to wrap properly
-    textAlign: 'left', // Ensure proper alignment
+    flexWrap: 'wrap',
+    textAlign: 'left',
   },
   buttonContainer: {
     marginTop: 10,
@@ -189,7 +195,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   addButton: {
-    backgroundColor: '#007BFF', // Blue color for a prominent button
+    backgroundColor: '#16A34A',
     paddingVertical: 12,
     paddingHorizontal: 24,
     marginBottom: 20,
@@ -199,7 +205,32 @@ const styles = StyleSheet.create({
   },
   addButtonText: {
     color: '#FFFFFF',
-    fontSize: 18, // Adjusted to ensure minimum font size of 18
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  editButton: {
+  backgroundColor: '#3B82F6',
+  paddingVertical: 12,
+  paddingHorizontal: 16,
+  borderRadius: 8,
+  alignItems: 'center',
+  justifyContent: 'center',
+  flex: 1,
+  marginRight: 8,
+},
+deleteButton: {
+  backgroundColor: '#DC2626',
+  paddingVertical: 12,
+  paddingHorizontal: 16,
+  borderRadius: 8,
+  alignItems: 'center',
+  justifyContent: 'center',
+  flex: 1,
+  marginLeft: 8,
+},
+  buttonText: {
+    color: '#FFFFFF',
+    fontSize: 18,
     fontWeight: 'bold',
   },
 });
