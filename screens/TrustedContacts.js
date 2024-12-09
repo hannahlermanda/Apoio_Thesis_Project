@@ -176,15 +176,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginBottom: 8,
     alignItems: 'flex-start',
+    flexWrap: 'wrap',
   },
   contactDetailsLabel: {
     fontSize: 18,
     fontWeight: 'bold',
     color: '#333333',
-    marginRight: 8,
+    marginRight: 4,
   },
   contactDetails: {
-    fontSize: 18,
+    fontSize: 17.5,
     color: '#444444',
     flexWrap: 'wrap',
     textAlign: 'left',

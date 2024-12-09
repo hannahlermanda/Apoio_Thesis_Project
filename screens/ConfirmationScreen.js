@@ -55,17 +55,17 @@ const ConfirmationScreen = () => {
     return (
         <SafeAreaView style={tw`bg-white flex-grow`}>
             <View style={tw`p-5`}>
-                <Text style={[tw`text-center font-bold text-[37px]`, { paddingVertical: 2 }]}>
+                <Text style={[tw`text-center font-bold text-[30px]`, { paddingVertical: 2 }]}>
                     Ride Confirmed! <Ionicons 
                         name="checkmark-circle" 
-                        size={36} 
+                        size={35} 
                         color="green" 
                         style={{ top: 10 }}
                     />
                 </Text>
                
 
-                <View style={tw`mt-5 flex-row justify-between mx-4`}>
+                <View style={tw`mt-5 flex-row justify-between mx-2`}>
 
                     <View style={tw`flex items-center`}>
                         <Image
@@ -90,13 +90,13 @@ const ConfirmationScreen = () => {
                     </View>
                 </View>
 
-                <View style={tw`mt-5 flex items-center`}>
-                    <Text style={tw`text-xl`} accessibilityLabel="Car Model">
+                <View style={tw`mt-4 flex items-center`}>
+                    <Text style={[tw`text-xl`, { maxWidth: '95%' }]} accessibilityLabel="Car Model">
                         Car Model: {rideInfo.carModel}
                     </Text>
                     <Image
                         source={{ uri: rideInfo.carImage }}
-                        style={tw`w-66 h-38 rounded-lg mb-5 mt-2 border border-gray-400`}
+                        style={tw`w-48 h-30 rounded-lg mb-5 mt-4 border border-gray-400`}
                         accessibilityLabel={`Image of ${rideInfo.carModel}`}
                     />
                     <Text style={tw`text-xl`} accessibilityLabel="License Plate">
