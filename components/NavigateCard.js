@@ -24,7 +24,7 @@ const NavigateCard = () => {
       <View style={tw`border-t border-gray-200 flex-shrink`}>
         <View>
           <GooglePlacesAutocomplete
-            placeholder="Where to?"
+            placeholder="Where to?" textInputProps={{ placeholderTextColor: '#555' }}
             styles={toInputBoxStyles}
             fetchDetails={true}
             minLength={2}
