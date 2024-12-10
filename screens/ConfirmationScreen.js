@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Alert, Image } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Alert, Image, Pressable } from 'react-native';
 import React from 'react';
 import tw from 'twrnc';
 import { useRoute, useNavigation } from '@react-navigation/native';
@@ -67,39 +67,58 @@ const ConfirmationScreen = () => {
 
                 <View style={tw`mt-5 flex-row justify-between mx-2`}>
 
-                    <View style={tw`flex items-center`}>
+                <View style={tw`flex items-center`}>
+                    <Pressable
+                        onPress={() => console.log(`Driver Image Clicked: ${rideInfo.driverName}`)}
+                        accessible={true}
+                        accessibilityLabel={`Driver Image: ${rideInfo.driverName}`}
+                    >
                         <Image
                             source={{ uri: rideInfo.driverImage }}
                             style={tw`w-29 h-29 rounded-full mb-2 border border-gray-400`} 
                         />
-                        <Text style={tw`text-xl text-center`} numberOfLines={2} ellipsizeMode="tail" maxWidth={100} accessibilityLabel="Driver Name">
-                            {rideInfo.driverName}
-                        </Text>
-                        <Text style={tw`text-lg text-center text-blue-600`}>Driver</Text>
-                    </View>
+                    </Pressable>
+                    <Text style={tw`text-xl text-center`} numberOfLines={2} ellipsizeMode="tail" maxWidth={100} accessibilityLabel={`Driver Name: ${rideInfo.driverName}`}>
+                        {rideInfo.driverName}
+                    </Text>
+                    <Text style={tw`text-lg text-center text-blue-600`}>Driver</Text>
+                </View>
 
-                    <View style={tw`flex items-center`}>
+                <View style={tw`flex items-center`}>
+                    <Pressable
+                        onPress={() => console.log(`Assistant Image Clicked: ${rideInfo.assistantName}`)}
+                        accessible={true}
+                        accessibilityLabel={`Care Assistant Image: ${rideInfo.assistantName}`}
+                    >
                         <Image
                             source={{ uri: rideInfo.assistantImage }}
                             style={tw`w-29 h-29 rounded-full mb-2 border border-gray-400`} 
                         />
-                        <Text style={tw`text-xl text-center`} numberOfLines={2} ellipsizeMode="tail" maxWidth={100} accessibilityLabel="Care Assistant Name">
-                            {rideInfo.assistantName}
-                        </Text>
-                        <Text style={tw`text-lg text-center text-green-600`}>Care Assistant</Text>
-                    </View>
+                    </Pressable>
+                    <Text style={tw`text-xl text-center`} numberOfLines={2} ellipsizeMode="tail" maxWidth={100} accessibilityLabel={`Care Assistant Name: ${rideInfo.assistantName}`}>
+                        {rideInfo.assistantName}
+                    </Text>
+                    <Text style={tw`text-lg text-center text-green-600`}>Care Assistant</Text>
+                </View>
+
                 </View>
 
                 <View style={tw`mt-4 flex items-center`}>
-                    <Text style={[tw`text-xl`, { maxWidth: '95%' }]} accessibilityLabel="Car Model">
+                    <Text style={[tw`text-xl`, { maxWidth: '95%' }]} accessibilityLabel={`Car Model: ${rideInfo.carModel}`}>
                         Car Model: {rideInfo.carModel}
                     </Text>
-                    <Image
-                        source={{ uri: rideInfo.carImage }}
-                        style={tw`w-48 h-30 rounded-lg mb-5 mt-4 border border-gray-400`}
+                    <Pressable
+                        onPress={() => console.log('Picture clicked!')}
+                        accessible={true}
                         accessibilityLabel={`Image of ${rideInfo.carModel}`}
-                    />
-                    <Text style={tw`text-xl`} accessibilityLabel="License Plate">
+                    >
+                        <Image
+                            source={{ uri: rideInfo.carImage }}
+                            style={tw`w-48 h-30 rounded-lg mb-5 mt-4 border border-gray-400`}
+                        />
+                    </Pressable>
+
+                    <Text style={tw`text-xl`} accessibilityLabel={`License Plate: ${rideInfo.licensePlate}`}>
                         License Plate: {rideInfo.licensePlate}
                     </Text>
                 </View>
